@@ -40,6 +40,7 @@ export interface Node extends Tree<Node> {
   isStopPropagate?: boolean
   orientation?: Orientation
   isIndexAlign?: boolean
+  useMeForIndexAlign?: boolean
   overrides?: { [direction in Direction]?: Node }
   overrideSources?: { direction: Direction, node: Node }[]
   onLeave?: (leave: Node) => void

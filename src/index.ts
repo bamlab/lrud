@@ -485,7 +485,22 @@ export class Lrud {
       if (this.isIndexAlignMode) {
         const currentFocusedNode = this.getCurrentFocusNode()
         const currentFocusedIndexRange = currentFocusedNode.indexRange
-        const currentFocusedIndex = currentFocusedIndexRange ? currentFocusedIndexRange[0] : currentFocusedNode.index
+        const getIndex = (): number => {
+          const useMeForIndexAlign = currentFocusedNode.parent.useMeForIndexAlign
+
+          if (useMeForIndexAlign) {
+            return currentFocusedNode.parent.index
+          }
+
+          if (currentFocusedIndexRange) {
+            return currentFocusedIndexRange[0]
+          }
+
+          return currentFocusedNode.index
+        }
+
+        const currentFocusedIndex = getIndex()
+
         if (node.isIndexAlign) {
           // we're in a nested grid, so need to take into account orientation and direction of travel
           if (node.parent.orientation === Orientations.VERTICAL) {

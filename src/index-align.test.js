@@ -55,6 +55,27 @@ describe('handleKeyEvent() - simple index alignment behaviour', () => {
     navigation.handleKeyEvent({ direction: 'down' })
     expect(navigation.currentFocusNode.id).toEqual('b1')
   })
+
+  test('moving between rows with virtual elements parenting the actual elements', () => {
+    const navigation = new Lrud()
+      .registerNode('root', { orientation: 'vertical', isIndexAlign: true })
+      .registerNode('row-1', { orientation: 'horizontal' })
+      .registerNode('row-1-col-1-virtual', { parent: 'row-1', isFocusable: false, useMeForIndexAlign: true })
+      .registerNode('row-1-col-1', { parent: 'row-1-col-1-virtual', isFocusable: true })
+      .registerNode('row-1-col-2-virtual', { parent: 'row-1', isFocusable: false, useMeForIndexAlign: true })
+      .registerNode('row-1-col-2', { parent: 'row-1-col-2-virtual', isFocusable: true })
+      .registerNode('row-2', { orientation: 'horizontal' })
+      .registerNode('row-2-col-1-virtual', { parent: 'row-2', isFocusable: false, useMeForIndexAlign: true })
+      .registerNode('row-2-col-1', { parent: 'row-2-col-1-virtual', isFocusable: true })
+      .registerNode('row-2-col-2-virtual', { parent: 'row-2', isFocusable: false, useMeForIndexAlign: true })
+      .registerNode('row-2-col-2', { parent: 'row-2-col-2-virtual', isFocusable: true })
+
+    navigation.assignFocus('row-1-col-2')
+    navigation.handleKeyEvent({ direction: 'down' })
+    expect(navigation.currentFocusNode.id).toEqual('row-2-col-2')
+    navigation.handleKeyEvent({ direction: 'up' })
+    expect(navigation.currentFocusNode.id).toEqual('row-1-col-2')
+  })
 })
 
 describe('handleKeyEvent() - index ranges', () => {
@@ -504,3 +525,4 @@ describe('handleKeyEvent() - moving between nested grids - override allows not a
     expect(navigation.currentFocusNode.id).toEqual('grid2_item6')
   })
 })
+

@@ -255,6 +255,7 @@ export const prepareNode = (nodeId: NodeId, nodeConfig: NodeConfig = {}): Node =
     isWrapping: nodeConfig.isWrapping,
     isStopPropagate: nodeConfig.isStopPropagate,
     isIndexAlign: nodeConfig.isIndexAlign,
+    useMeForIndexAlign: nodeConfig.useMeForIndexAlign,
     onLeave: nodeConfig.onLeave,
     onEnter: nodeConfig.onEnter,
     shouldCancelLeave: nodeConfig.shouldCancelLeave,
