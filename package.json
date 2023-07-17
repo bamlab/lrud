@@ -1,6 +1,7 @@
 {
   "name": "@bam.tech/lrud",
   "version": "8.0.0",
+  "private": false,
   "description": "Left, Right, Up, Down. A spatial navigation library for devices with input via directional controls",
   "main": "dist/cjs/index.min.js",
   "module": "dist/esm/index.js",
@@ -60,6 +61,7 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "rollup -c",
+    "publish": "npm publish --access public",
     "watch": "npm run build -- -w"
   }
 }
