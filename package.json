@@ -61,7 +61,7 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "rollup -c",
-    "publish": "npm publish --access public",
+    "publish:package": "npm publish --access public",
     "watch": "npm run build -- -w"
   }
 }
