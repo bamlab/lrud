@@ -28,7 +28,7 @@ import {
   traverseNodeSubtree
 } from './utils'
 
-import mitt from 'mitt'
+import mitt,{Emitter, Handler} from 'mitt'
 
 export * from './interfaces'
 
@@ -37,7 +37,7 @@ export class Lrud {
   rootNode: Node
   currentFocusNode?: Node
   isIndexAlignMode: boolean
-  emitter: mitt.Emitter
+  emitter: Emitter<{[key:string]:unknown}>
 
   constructor () {
     this.nodes = {}
@@ -53,7 +53,7 @@ export class Lrud {
    * @param {string} eventName - event to subscribe to
    * @param {function} callback - function to call on event
    */
-  on (eventName: string, callback: mitt.Handler): void {
+  on (eventName: string, callback: Handler): void {
     this.emitter.on(eventName, callback)
   }
 
@@ -63,7 +63,7 @@ export class Lrud {
    * @param {string} eventName - event to unsubscribe from
    * @param {function} callback - function that was added using .on()
    */
-  off (eventName: string, callback: mitt.Handler): void {
+  off (eventName: string, callback: Handler): void {
     this.emitter.off(eventName, callback)
   }
 
