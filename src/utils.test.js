@@ -613,6 +613,7 @@ describe('prepareNode()', () => {
     expect(prepareNode('node', { shouldCancelEnter: mock })).toEqual({ ...baseNode, shouldCancelEnter: mock })
     expect(prepareNode('node', { onEnterCancelled: mock })).toEqual({ ...baseNode, onEnterCancelled: mock })
     expect(prepareNode('node', { onSelect: mock })).toEqual({ ...baseNode, onSelect: mock })
+    expect(prepareNode('node', { onLongSelect: mock })).toEqual({ ...baseNode, onLongSelect: mock })
     expect(prepareNode('node', { onInactive: mock })).toEqual({ ...baseNode, onInactive: mock })
     expect(prepareNode('node', { onActive: mock })).toEqual({ ...baseNode, onActive: mock })
     expect(prepareNode('node', { onActiveChildChange: mock })).toEqual({ ...baseNode, onActiveChildChange: mock })

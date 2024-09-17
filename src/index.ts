@@ -761,6 +761,17 @@ export class Lrud {
       return currentFocusNode
     }
 
+    // if all we're doing is processing an long enter, just run the `onLongSelect` function of the current node...
+    if (direction === Directions.LONG_ENTER) {
+      if (currentFocusNode) {
+        this.emitter.emit('long_select', currentFocusNode)
+        if (currentFocusNode.onLongSelect) {
+          currentFocusNode.onLongSelect(currentFocusNode)
+        }
+      }
+      return currentFocusNode
+    }
+
     let topNode: Node
     let focusableNode: Node
 

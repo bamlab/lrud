@@ -6,6 +6,7 @@ export enum Directions {
   UP = 'up',
   DOWN = 'down',
   ENTER = 'enter',
+  LONG_ENTER = 'long_enter',
   UNSPECIFIED = '*'
 }
 
@@ -50,6 +51,7 @@ export interface Node extends Tree<Node> {
   shouldCancelEnter?: (leave: Node, enter: Node) => boolean
   onEnterCancelled?: (currentFocusNode: Node, focusableNode: Node) => void
   onSelect?: (node: Node) => void
+  onLongSelect?: (node: Node) => void
   onInactive?: (node: Node) => void
   onActive?: (node: Node) => void
   onActiveChildChange?: (event: { node: Node, leave: Node, enter: Node }) => void

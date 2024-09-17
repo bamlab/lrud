@@ -263,6 +263,7 @@ export const prepareNode = (nodeId: NodeId, nodeConfig: NodeConfig = {}): Node =
     shouldCancelEnter: nodeConfig.shouldCancelEnter,
     onEnterCancelled: nodeConfig.onEnterCancelled,
     onSelect: nodeConfig.onSelect,
+    onLongSelect: nodeConfig.onLongSelect,
     onInactive: nodeConfig.onInactive,
     onActive: nodeConfig.onActive,
     onActiveChildChange: nodeConfig.onActiveChildChange,

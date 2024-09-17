@@ -330,6 +330,20 @@ describe('event scenarios', () => {
     expect(onSelectMock).toBeCalledTimes(1)
   })
 
+  test('node onLongSelect', () => {
+    const onLongSelectMock = jest.fn()
+
+    const navigation = new Lrud()
+      .registerNode('root')
+      .registerNode('a', { isFocusable: true, onLongSelect: onLongSelectMock })
+
+    navigation.assignFocus('a')
+
+    navigation.handleKeyEvent({ direction: 'long_enter' })
+
+    expect(onLongSelectMock).toBeCalledTimes(1)
+  })
+
   test('node onMove - forward', () => {
     const onMoveSpy = jest.fn()
 
@@ -389,6 +403,21 @@ describe('event scenarios', () => {
     expect(onSelectMock).toBeCalledTimes(1)
   })
 
+  test('instance emit long select', () => {
+    const navigation = new Lrud()
+      .registerNode('root')
+      .registerNode('a', { isFocusable: true })
+
+    navigation.assignFocus('a')
+
+    const onLongSelectMock = jest.fn()
+    navigation.on('long_select', onLongSelectMock)
+
+    navigation.handleKeyEvent({ direction: 'long_enter' })
+
+    expect(onLongSelectMock).toBeCalledTimes(1)
+  })
+
   test('node onSelect & instance emit select', () => {
     const onSelectMock = jest.fn()
 
@@ -402,6 +431,21 @@ describe('event scenarios', () => {
     navigation.handleKeyEvent({ direction: 'enter' })
 
     expect(onSelectMock).toBeCalledTimes(2)
+  })
+
+  test('node onLongSelect & instance emit long select', () => {
+    const onLongSelectMock = jest.fn()
+
+    const navigation = new Lrud()
+      .registerNode('root')
+      .registerNode('a', { isFocusable: true, onLongSelect: onLongSelectMock })
+
+    navigation.assignFocus('a')
+    navigation.on('long_select', onLongSelectMock)
+
+    navigation.handleKeyEvent({ direction: 'long_enter' })
+
+    expect(onLongSelectMock).toBeCalledTimes(2)
   })
 
   test('select not fired on callback when removed', () => {
@@ -419,6 +463,25 @@ describe('event scenarios', () => {
     navigation.off('select', onSelectMock)
 
     navigation.handleKeyEvent({ direction: 'enter' })
+
+    expect(onSelectMock).toBeCalledTimes(1)
+  })
+
+  test('long select not fired on callback when removed', () => {
+    const navigation = new Lrud()
+      .registerNode('root')
+      .registerNode('a', { isFocusable: true })
+
+    navigation.assignFocus('a')
+
+    const onSelectMock = jest.fn()
+    navigation.on('long_select', onSelectMock)
+
+    navigation.handleKeyEvent({ direction: 'long_enter' })
+
+    navigation.off('long_select', onSelectMock)
+
+    navigation.handleKeyEvent({ direction: 'long_enter' })
 
     expect(onSelectMock).toBeCalledTimes(1)
   })
