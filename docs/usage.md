@@ -162,6 +162,12 @@ If given, the `onBlur` function will be called when the node if the node had foc
 
 If given, the `onSelect` function will be called when the node is focused and a key event of "ENTER" is handled.
 
+### `onLongSelect`
+
+`function`
+
+If given, the `onLongSelect` function will be called when the node is focused and a key event of "LONG_ENTER" is handled.
+
 ### `onActive`
 
 `function`
