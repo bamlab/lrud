@@ -1,6 +1,6 @@
-# LRUD ![Build Status](https://github.com/bbc/lrud/actions/workflows/github-actions.yml/badge.svg?branch=master)
+# LRUD
 
-A spatial navigation library for devices with input via directional controls
+A fork of the original spatial navigation [library developed by the bbc](https://github.com/bbc/lrud) for devices with input via directional controls
 
 ## :nut_and_bolt: Maintenance Mode :nut_and_bolt:
 LRUD is now in maintenance mode; existing bugs will be fixed, but new features will not be added. A new library called [LRUD Spatial](https://github.com/bbc/lrud-spatial) is now available to the Open Source community. 
@@ -17,7 +17,7 @@ We are currently in the process of writing more detailed docs for an upgrade pro
 ## Getting Started
 
 ```bash
-git clone git@github.com:bbc/lrud.git lrud
+git clone git@github.com:bamlab/lrud.git
 cd lrud
 npm install
 ```
