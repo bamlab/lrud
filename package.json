@@ -34,6 +34,8 @@
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -51,10 +53,12 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
+    "conventional-changelog": "^7.1.1",
     "mitt": "3.0.1"
   },
   "scripts": {
     "preversion": "npm test",
+    "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
     "postversion": "git push && git push --tags",
     "clean": "rimraf dist",
     "lint": "eslint src/*.ts src/**/*.ts",
@@ -66,5 +70,10 @@
     "build": "rollup -c",
     "publish:package": "npm publish --access public",
     "watch": "npm run build -- -w"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
