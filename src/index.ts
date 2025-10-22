@@ -969,6 +969,46 @@ export class Lrud {
   }
 
   /**
+   * Bubbles up the focus event to the parents of the given node.
+   *
+   * @param {string|object} child - node or id of the node, that just has been focused and that will bubble up the focus event
+   */
+  bubbleUpFocus (child: NodeId | Node): void {
+    child = typeof child === 'string' ? this.getNode(child) : (child as Node)
+    if (!child) return
+
+    let parent = child.parent
+    while (parent) {
+      if (parent.onFocus) {
+        parent.onFocus(parent)
+      }
+      this.emitter.emit('focus', parent)
+      // if the parent has a parent, bubble up
+      parent = parent.parent
+    }
+  }
+
+  /**
+   * Bubbles up the blur event to the parents of the given node.
+   *
+   * @param {string|object} child - node or id of the node, that just has been blurred and that will bubble up the blur event
+   */
+  bubbleUpBlur (child: NodeId | Node): void {
+    child = typeof child === 'string' ? this.getNode(child) : (child as Node)
+    if (!child) return
+
+    let parent = child.parent
+    while (parent) {
+      if (parent.onBlur) {
+        parent.onBlur(parent)
+      }
+      this.emitter.emit('blur', parent)
+      // if the parent has a parent, bubble up
+      parent = parent.parent
+    }
+  }
+
+  /**
    * Sets the current focus of the instance to the given node or node ID.
    *
    * If the given node points to a non-focusable node, we dig down from
