@@ -1,6 +1,6 @@
-import typescriptPlugin from 'rollup-plugin-typescript2'
-import nodeResolve from 'rollup-plugin-node-resolve'
-import { uglify } from 'rollup-plugin-uglify'
+import typescript from '@rollup/plugin-typescript'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import terser from '@rollup/plugin-terser'
 
 export default [
   {
@@ -10,8 +10,9 @@ export default [
       format: 'cjs'
     },
     plugins: [
-      typescriptPlugin({
-        useTsconfigDeclarationDir: true
+      typescript({
+        declaration: true,
+        declarationDir: 'dist/types'
       }),
       nodeResolve()
     ]
@@ -22,9 +23,7 @@ export default [
       file: 'dist/cjs/index.min.js',
       format: 'cjs'
     },
-    plugins: [
-      uglify()
-    ]
+    plugins: [terser()]
   },
   {
     input: 'src/index.ts',
@@ -33,8 +32,9 @@ export default [
       format: 'esm'
     },
     plugins: [
-      typescriptPlugin({
-        useTsconfigDeclarationDir: true
+      typescript({
+        declaration: true,
+        declarationDir: 'dist/types'
       }),
       nodeResolve()
     ]

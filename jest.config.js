@@ -1,14 +1,19 @@
-module.exports = {
-  'roots': [
-    '<rootDir>/src'
-  ],
-  'collectCoverageFrom': [
+export default {
+  roots: ['<rootDir>/src'],
+  collectCoverageFrom: [
     'src/**/*.{js,jsx,ts}',
     '!<rootDir>/node_modules/',
     '!<rootDir>/path/to/dir/',
     '!<rootDir>/dist/'
   ],
-  'transform': {
-    '^.+\\.tsx?$': 'ts-jest'
+  preset: 'ts-jest/presets/default-esm',
+  extensionsToTreatAsEsm: ['.ts'],
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true
+      }
+    ]
   }
 }
