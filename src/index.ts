@@ -28,7 +28,7 @@ import {
   traverseNodeSubtree
 } from './utils'
 
-import mitt,{Emitter, Handler} from 'mitt'
+import mitt, { Emitter, Handler } from 'mitt'
 
 export * from './interfaces'
 
@@ -311,7 +311,7 @@ export class Lrud {
     source.overrides[direction] = target
 
     target.overrideSources = target.overrideSources || []
-    target.overrideSources.push({ direction: direction, node: source })
+    target.overrideSources.push({ direction, node: source })
 
     return this
   }
